@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  batch-simulator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm_batching_engine
+    
+    stdin_open: true
+    tty: true
+    
+    volumes:
+      - ./models:/app/models
+      - ./results:/app/results
+      - ./src:/app/src
+      - ./scripts:/app/scripts
+      
+    environment:
+      - MODEL_PATH=/app/models/gemma-3-4b-it-q4_k_m.gguf
+      - OUTPUT_DIR=/app/results
+      - PYTHONUNBUFFERED=1
+      - PYTHONPATH=/app    # <--- ADD THIS LINE
+
+    # ==========================================================
+    # NVIDIA GPU CONFIGURATION
+    # ==========================================================
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

@@ -1,0 +1,10 @@
+# LLM Engine binding
+llama-cpp-python==0.2.79
+
+# Data processing and metric logging
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Visualization libraries for the evaluation report graphs
+matplotlib>=3.9.0
+seaborn>=0.13.0
