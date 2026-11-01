@@ -1,5 +1,4 @@
-# LLM Engine binding
-llama-cpp-python==0.2.79
+
 
 # Data processing and metric logging
 pandas>=2.2.0
